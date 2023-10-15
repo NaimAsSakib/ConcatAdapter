@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         )
 
+
         val nameList = listOf(
             "kamal", "Rahim", "Karim", "Boss", "Bass", "Bacchu", "Tomal", "Khan" )
 
