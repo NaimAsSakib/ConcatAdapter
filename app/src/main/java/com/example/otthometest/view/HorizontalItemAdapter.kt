@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.otthometest.databinding.ItemRcvHorizontalBinding
 
-class HorizontalAdapter( private val imageResIds: List<Int> ): RecyclerView.Adapter<HorizontalAdapter.Viewholder>() {
+class HorizontalItemAdapter(private val imageResIds: List<Int> ): RecyclerView.Adapter<HorizontalItemAdapter.Viewholder>() {
 
     inner class Viewholder( val binding: ItemRcvHorizontalBinding ):
     RecyclerView.ViewHolder(binding.root){
@@ -14,13 +14,13 @@ class HorizontalAdapter( private val imageResIds: List<Int> ): RecyclerView.Adap
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HorizontalAdapter.Viewholder {
+    ): HorizontalItemAdapter.Viewholder {
         val binding = ItemRcvHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Viewholder(binding)    }
 
 
 
-    override fun onBindViewHolder(holder: HorizontalAdapter.Viewholder, position: Int) {
+    override fun onBindViewHolder(holder: HorizontalItemAdapter.Viewholder, position: Int) {
         holder.binding.ivWatchListContent.setImageResource(imageResIds[position])
     }
 

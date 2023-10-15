@@ -11,55 +11,45 @@ import com.example.otthometest.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterParentHorizontal: HorizontalParentAdapter
-    private lateinit var adapterHorizontalVIew: HorizontalAdapter
     private lateinit var adapterName: NameAdapter
-    private lateinit var adapter: ConcatAdapter
+    private lateinit var concatAdapter: ConcatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // setContentView(R.layout.activity_main)
-
-        // Initialize the binding
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        // Set the content view using the binding
         setContentView(binding.root)
 
+
         val imageResIdList = listOf(
-            R.drawable.dhaka_attack,
-            R.drawable.dhaka_attack,
-            R.drawable.dhaka_attack,
-            R.drawable.dhaka_attack,
-            R.drawable.dhaka_attack,
+            listOf(  R.drawable.dhaka_attack, R.drawable.dhaka_attack,  R.drawable.dhaka_attack,  R.drawable.dhaka_attack,  R.drawable.dhaka_attack,  R.drawable.dhaka_attack),
+
+            listOf(  R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family),
+
+            listOf(  R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family, R.drawable.family),
+
+            listOf(  R.drawable.dhaka_attack, R.drawable.dhaka_attack, R.drawable.dhaka_attack, R.drawable.dhaka_attack, R.drawable.dhaka_attack, R.drawable.dhaka_attack),
+
         )
 
         val nameList = listOf(
-            "kamal", "Rahim", "Karim", "Boss", "Bass", "Bacchu", "Tomal", "Khan"
-        )
+            "kamal", "Rahim", "Karim", "Boss", "Bass", "Bacchu", "Tomal", "Khan" )
 
-        adapterHorizontalVIew = HorizontalAdapter(imageResIdList)
-
-
-        //var childList = listOf(adapterHorizontalVIew1,adapterHorizontalVIew2,adapterHorizontalVIew3)
-
-       /* adapterHorizontalVIew = HorizontalAdapter(imageResIdList)
-        val horizontalRCV = RecyclerView(this)
-        horizontalRCV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false )
-        horizontalRCV.adapter = adapterHorizontalVIew*/
-
-        adapterParentHorizontal = HorizontalParentAdapter(adapterHorizontalVIew)
-        val horizontalRCV = RecyclerView(this)
-        horizontalRCV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false )
-        horizontalRCV.adapter = adapterParentHorizontal
-
-
+        adapterParentHorizontal = HorizontalParentAdapter(imageResIdList)
 
         adapterName = NameAdapter(nameList)
+
         var listOfAdapters = listOf(adapterParentHorizontal,adapterName)
 
-        binding.rcvConcat.layoutManager = LinearLayoutManager(this)
-        adapter = ConcatAdapter(listOfAdapters)
-        binding.rcvConcat.adapter = adapter
+        binding.rcvMain.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false )
+        concatAdapter = ConcatAdapter(listOfAdapters)
+        binding.rcvMain.adapter = concatAdapter
+
+        // For adding any other adapter
+        //concatAdapter.addAdapter(adapterParentHorizontal)
+
+        //For removing any adapter
+        //concatAdapter.removeAdapter(adapterParentHorizontal)
 
 
     }

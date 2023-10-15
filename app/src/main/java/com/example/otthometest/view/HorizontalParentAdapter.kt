@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.otthometest.R
-import com.example.otthometest.databinding.ItemRcvHorizontalBinding
 import com.example.otthometest.databinding.ItemRcvParentHorizontalBinding
 
-class HorizontalParentAdapter ( val horizontalAdapter: HorizontalAdapter ): RecyclerView.Adapter<HorizontalParentAdapter.Viewholder>(){
+class HorizontalParentAdapter (private val list: List<List<Int>>): RecyclerView.Adapter<HorizontalParentAdapter.Viewholder>(){
     class Viewholder(val binding: ItemRcvParentHorizontalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -23,13 +21,13 @@ class HorizontalParentAdapter ( val horizontalAdapter: HorizontalAdapter ): Recy
     }
 
     override fun onBindViewHolder(holder: HorizontalParentAdapter.Viewholder, position: Int) {
-        val imageResIdList = listOf<Int>()
+
         holder.binding.rcvHorizontalParent.layoutManager = LinearLayoutManager(holder.binding.rcvHorizontalParent.context, RecyclerView.HORIZONTAL, false)
-        holder.binding.rcvHorizontalParent.adapter = HorizontalAdapter(imageResIdList)
+        holder.binding.rcvHorizontalParent.adapter = HorizontalItemAdapter(list[position])
     }
 
     override fun getItemCount(): Int {
-        return horizontalAdapter.itemCount
+        return list.size
     }
 
 }
